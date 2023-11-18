@@ -23,7 +23,7 @@ const listItem = document.createElement('li');
 listItem.innerHTML = `
 <strong>#:</strong> ${user.ip} 
 <form method="POST" action="/delete">
-<input type="hidden" id="id" name="id" value=${user.id} ><br>
+<input type="hidden" id="_id" name="_id" value=${user._id} ><br>
 <input type="submit" value="delete">
 </form>
 `;
