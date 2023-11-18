@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Submission</title>
+</head>
+<body>
+<h1>Username and Password</h1>
+<ul id="user-list">
+<!-- User data will be inserted here -->
+</ul>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+// Fetch user data from the API endpoint
+fetch('/api/users')
+.then(response => response.json())
+.then(data => {
+const userList = document.getElementById('user-list');
+// Iterate through the data and create list items for each user
+data.forEach(user => {
+const listItem = document.createElement('li');
+listItem.innerHTML = `
+<strong>#:</strong> ${user.ip} 
+<form method="POST" action="/delete">
+<input type="hidden" id="ip" name="ip" value=${user.ip} ><br>
+<input type="submit" value="delete">
+</form>
+`;
+userList.appendChild(listItem);
+});
+})
+.catch(error => console.error('Error:', error));
+});
+</script>
+</body>
+</html>
