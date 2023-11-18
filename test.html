@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.io Example</title>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+
+        // Listen for incoming messages
+        socket.on('liveresponse', function (msg) {
+          $('#messages').append($('<li>').text(msg));
+        });
+
+        // Handle form submission
+        $('form').submit(function () {
+          socket.emit('IP2', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>
