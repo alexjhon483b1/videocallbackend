@@ -31,9 +31,9 @@ app.get('/data', async(req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/delete', async (req, res) => {
     console.log(req.body)
-    const { ip } = req.body;
+    const { id } = req.body;
     try {
-    const deletedUser = await DataModel.findOneAndDelete({ ip });
+    const deletedUser = await DataModel.findOneAndDelete({ id });
     if (!deletedUser) {
     console.log('No user found with the given first name.');
     return res.status(404).json({ message: 'No user found with the given first name.' });
