@@ -1,10 +1,14 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+
+// Enable CORS for all routes
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/test.html');
@@ -29,6 +33,8 @@ io.on('connection', (socket) => {
 });
 
 // Start the server on port 3000
-server.listen(3000, () => {
-  console.log('Server listening on http://localhost:3000');
+const PORT = process.env.PORT || 3002;
+
+server.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
