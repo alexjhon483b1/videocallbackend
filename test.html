@@ -15,13 +15,13 @@
         var socket = io();
 
         // Listen for incoming messages
-        socket.on('chat message', function (msg) {
+        socket.on('response', function (msg) {
           $('#messages').append($('<li>').text(msg));
         });
 
         // Handle form submission
         $('form').submit(function () {
-          socket.emit('chat message', $('#m').val());
+          socket.emit('IP2', $('#m').val());
           $('#m').val('');
           return false;
         });
